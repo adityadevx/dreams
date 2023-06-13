@@ -30,6 +30,9 @@ const handler = async (req, res) => {
                 sessionId: Math.floor(Math.random() * 1000000000),
             });
             newUser.save();
+            const addReferral = await User.findOne({ referralId: req.body.referralId });
+            addReferral.myreferrals.push(newUser.username);
+            addReferral.save();
             res.status(200).json({ success: true, message: "User created successfully" });
         }
         else {

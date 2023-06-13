@@ -4,6 +4,7 @@ import { Text, Card, CardBody, Link, useToast, Box, Heading, Grid } from "@chakr
 import { CopyIcon } from "@chakra-ui/icons";
 import { FaUsers, FaWallet, FaGlobe, FaMoneyBillAlt, FaExchangeAlt } from "react-icons/fa";
 import Cookies from "js-cookie";
+import router from "next/router";
 
 export default function App() {
     const toast = useToast();

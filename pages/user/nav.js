@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
     IconButton,
     Avatar,
@@ -40,7 +40,8 @@ import {
 const LinkItems = [
     { name: "Dashboard", icon: IconHome, href: "/user/dashboard" },
     { name: "Settings", icon: IconSettings, href: "/user/settings" },
-    {name : "Add Funds", icon: IconSettings, href: "/user/addfunds"}
+    { name: "Add Funds", icon: IconSettings, href: "/user/addfunds" },
+    {name : "Staking", icon : IconSettings, href : "/user/staking"}
 ];
 
 export default function NavHeader({ children }) {
@@ -77,11 +78,11 @@ export default function NavHeader({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
     const router = useRouter();
-    
 
 
 
-   return (
+
+    return (
         <Box
             transition="3s ease"
             bg={useColorModeValue("white", "gray.900")}
@@ -147,7 +148,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 
 const MobileNav = ({ onOpen, ...rest }) => {
     const [userProfile, setUserProfile] = useState("");
-    
+
     useEffect(() => {
         const getUserDetails = async () => {
             const res = await fetch("/api/user/getUserDetails", {
@@ -162,9 +163,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
 
         };
         getUserDetails();
-    }, [])  
-    
-    
+    }, [])
+
+
     return (
         <Flex
             ml={{ base: 0, md: 60 }}

@@ -12,9 +12,9 @@ export default function SignupCard() {
     const router = useRouter();
     const toast = useToast();
     const [showPassword, setShowPassword] = useState(false);
-    const [formDetails, setFormDetails] = useState({ firstName: '', lastName: '', email: '', telephone: '', username: '', country: '', wallet: 0, topupWallet: 0, plan: 0, deposits: 0, withdrawals: 0, password: '', referralId: '',sessionId:'' })
+    const [formDetails, setFormDetails] = useState({ firstName: '', lastName: '', email: '', telephone: '', username: '', country: '', wallet: 0, topupWallet: 0, deposits: 0, withdrawals: 0, password: '', referralId: '', sessionId: '' })
 
-    const { firstName, lastName, email, telephone, username, country, wallet, topupWallet, plan, deposits, withdrawals, password, referralId } = formDetails;
+    const { firstName, lastName, email, telephone, username, country, wallet, topupWallet, deposits, withdrawals, password, referralId } = formDetails;
 
     const handleOnChange = (e) => {
         setFormDetails({ ...formDetails, [e.target.name]: e.target.value })
@@ -33,10 +33,10 @@ export default function SignupCard() {
             });
             const data = await res.json();
             console.log(data);
-            if(res.status === 200){
-            router.push('/user/login');
+            if (res.status === 200) {
+                router.push('/user/login');
             }
-            if(res.status === 400){
+            if (res.status === 400) {
                 return toast({ title: data.message, status: "error", position: 'top', duration: 3000, })
             }
 
@@ -155,7 +155,7 @@ export default function SignupCard() {
                         </Stack>
                         <Stack pt={6}>
                             <Text align={'center'}>
-                                Already a user? <Link color={'blue.400'} onClick={()=>{router.push('/user/login')}}  >Login</Link>
+                                Already a user? <Link color={'blue.400'} onClick={() => { router.push('/user/login') }}  >Login</Link>
                             </Text>
                         </Stack>
                     </Stack>
