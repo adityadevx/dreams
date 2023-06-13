@@ -68,6 +68,30 @@ getUserDetails();
                         >
                             <Box className="card-icon card-icon-large">
                                 <FaUsers size={110} />
+                            </Box>
+                            <Box mb={4}>
+                                <Heading as="h5" fontSize="md" mb={0}>
+                                   User Id
+                                </Heading>
+                            </Box>
+                            <Box d="flex" alignItems="center" mb={2}>
+                                <Box flex="1">
+                                    <Heading as="h2" fontSize="xl" mb={0}>
+                                        {user.username}
+                                    </Heading>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box p={4}>
+                        <Box
+                            bgGradient="linear(to-r, #493240, #f09)"
+                            borderRadius="10px"
+                            color="white"
+                            p={4}
+                        >
+                            <Box className="card-icon card-icon-large">
+                                <FaUsers size={110} />
 
                             </Box>
                             <Box mb={4}>
@@ -96,6 +120,31 @@ getUserDetails();
                             </Box>
                             <Box mb={4}>
                                 <Heading as="h5" fontSize="md" mb={0}>
+                                    Direct Team
+                                </Heading>
+                            </Box>
+                            <Box d="flex" alignItems="center" mb={2}>
+                                <Box flex="1">
+                                    <Heading as="h2" fontSize="xl" mb={0}>
+                                        {user.directReferrals}
+                                    </Heading>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+
+                    <Box p={4}>
+                        <Box
+                            bgGradient="linear(to-r, #373b44, #4286f4)"
+                            borderRadius="10px"
+                            color="white"
+                            p={4}
+                        >
+                            <Box className="card-icon card-icon-large">
+                                <FaWallet size={110} />
+                            </Box>
+                            <Box mb={4}>
+                                <Heading as="h5" fontSize="md" mb={0}>
                                     Wallet
                                 </Heading>
                             </Box>
@@ -108,7 +157,6 @@ getUserDetails();
                             </Box>
                         </Box>
                     </Box>
-
                     <Box p={4}>
                         <Box
                             bgGradient="linear(to-r, #373b44, #4286f4)"

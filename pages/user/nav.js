@@ -39,10 +39,8 @@ import {
 
 const LinkItems = [
     { name: "Dashboard", icon: IconHome, href: "/user/dashboard" },
-    { name: "Trending", icon: IconTrendingUp, href: "/user/trending" },
-    { name: "Explore", icon: IconCompass, href: "/user/explore" },
-    { name: "Favorites", icon: IconStar, href: "/user/favorites" },
-    { name: "Settings", icon: IconSettings, href: "/user/settings" }
+    { name: "Settings", icon: IconSettings, href: "/user/settings" },
+    {name : "Add Funds", icon: IconSettings, href: "/user/addfunds"}
 ];
 
 export default function NavHeader({ children }) {
