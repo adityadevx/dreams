@@ -15,6 +15,7 @@ import {
 import { CheckIcon } from '@chakra-ui/icons';
 import NavHeader from './nav';
 import Cookie from 'js-cookie';
+import updateDailyBonus from '@/pages/api/cron/dailyBonus';
 
 const plans = [
     {
@@ -63,6 +64,7 @@ export default function Pricing() {
 
     return (
         <NavHeader>
+
             <Grid
                 templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
                 gap={3}
@@ -96,7 +98,18 @@ function Card({ plan }) {
             const data = await response.json();
             console.log(data);
 
-            if (response.status === 400) {
+            if (response.status === 200) {
+                return toast({
+                    title: "Plan bought successfully",
+                    description: "You will receive your daily bonus in your wallet",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                    position: "top-center"
+                })
+            }
+
+            else if (response.status === 400) {
                 return toast({
                     title: "Insufficient balance",
                     description: "Please topup your wallet",
@@ -112,6 +125,7 @@ function Card({ plan }) {
         }
     };
     return (
+
         <Box
             maxW={'330px'}
             w={'full'}

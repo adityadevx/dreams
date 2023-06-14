@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-
-
 const UserSchema = new mongoose.Schema({
     name: { type: String, },
     email: { type: String, trim: true },
@@ -15,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, trim: true },
     referralId: { type: String, trim: true },
     username: { type: String, trim: true },
-    plans: {type:Array, trim: true, default: []},
+    plans: { type: Array },
     referredBy: { type: String, trim: true },
     gender: { type: String, trim: true, default: "" },
     dob: { type: String, trim: true, default: "" },

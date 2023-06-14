@@ -48,7 +48,7 @@ const login = () => {
                     position: 'top'
                 })
                 document.cookie = `username=${data.user}`;
-                router.push('/user/nav');
+                router.push('/user/dashboard');
             }
             else {
                 toast({
