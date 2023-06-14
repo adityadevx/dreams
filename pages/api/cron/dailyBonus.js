@@ -1,5 +1,5 @@
-import User from '@/models/User';
 import dbConnection from '@/controllers/dbConnection';
+import User from '@/models/User';
 
 async function updateDailyBonus() {
     try {
@@ -25,6 +25,7 @@ async function updateDailyBonus() {
 
             // Update the user's dailyBonus field with the calculated total
             user.dailyBonus = totalDailyBonus;
+            user.wallet += totalDailyBonus;
 
             // Save the updated user document
             await user.save();
@@ -45,3 +46,4 @@ async function updateDailyBonus() {
         console.error('Error establishing database connection or updating daily bonus:', error);
     }
 })();
+

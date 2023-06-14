@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-const { Schema, model } = mongoose;
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, },
@@ -32,6 +31,4 @@ const UserSchema = new mongoose.Schema({
     directReferrals: { type: Number, trim: true, default: 0 },
 });
 
-
-
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema) ;

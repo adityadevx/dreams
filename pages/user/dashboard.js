@@ -5,7 +5,7 @@ import { CopyIcon } from "@chakra-ui/icons";
 import { FaUsers, FaWallet, FaGlobe, FaMoneyBillAlt, FaExchangeAlt } from "react-icons/fa";
 import Cookies from "js-cookie";
 import router from "next/router";
-import dailyBonus from "@/pages/api/cron/dailyBonus";
+
 
 
 export default function App() {
@@ -42,9 +42,10 @@ export default function App() {
     }, [])
 
     return (
+        
+        <>
         <NavHeader>
             <Text fontSize={'4xl'} fontWeight={'bold'} >Dashboard</Text>
-            
             <Card>
                 <CardBody>
                     <Text fontSize="xl" fontWeight={'bold'}>
@@ -106,7 +107,7 @@ export default function App() {
                             <Box d="flex" alignItems="center" mb={2}>
                                 <Box flex="1">
                                     <Heading as="h2" fontSize="xl" mb={0}>
-                                        3,243
+                                        {user && user.team ? user.team.length : 0}
                                     </Heading>
                                 </Box>
                             </Box>
@@ -130,7 +131,7 @@ export default function App() {
                             <Box d="flex" alignItems="center" mb={2}>
                                 <Box flex="1">
                                     <Heading as="h2" fontSize="xl" mb={0}>
-                                        {user.directReferrals}
+                                    {user && user.myreferrals ? user.myreferrals.length : 0}
                                     </Heading>
                                 </Box>
                             </Box>
@@ -239,7 +240,7 @@ export default function App() {
             </Box>
 
             {/*  second row cards */}
-            <Text fontSize={'4xl'} fontWeight={'bold'} >Incomes</Text>
+            <Text fontSize={'4xl'} fontWeight={'bold'}>Incomes</Text>
             <Box>
                 <Grid
                     templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(4, 1fr)" }}
@@ -263,7 +264,7 @@ export default function App() {
                             <Box d="flex" alignItems="center" mb={2}>
                                 <Box flex="1">
                                     <Heading as="h2" fontSize="xl" mb={0}>
-                                        3,243
+                                        {user.dailyBonus}
                                     </Heading>
                                 </Box>
                             </Box>
@@ -288,7 +289,7 @@ export default function App() {
                             <Box d="flex" alignItems="center" mb={2}>
                                 <Box flex="1">
                                     <Heading as="h2" fontSize="xl" mb={0}>
-                                        15.07k
+                                        {user.directBonus}
                                     </Heading>
                                 </Box>
                             </Box>
@@ -380,5 +381,7 @@ export default function App() {
                 </Grid>
             </Box>
         </NavHeader>
+        </>
+        
     );
 }
