@@ -1,21 +1,23 @@
-import React, { useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import NavHeader from "./nav";
-import { Text, Card, CardBody, Link, useToast, Box, Heading, Grid } from "@chakra-ui/react";
+import { Text, Card, CardBody, Link, useToast, Box, Heading, Grid, Button } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import { FaUsers, FaWallet, FaGlobe, FaMoneyBillAlt, FaExchangeAlt } from "react-icons/fa";
 import Cookies from "js-cookie";
 import router from "next/router";
+import dailyBonus from "@/pages/api/cron/dailyBonus";
+
 
 export default function App() {
     const toast = useToast();
-    const [user,setUser] = useState({});
+    const [user, setUser] = useState({});
 
     const handleCopy = () => {
         const referralLinkText = document.getElementById("referralLinkText");
         navigator.clipboard.writeText(referralLinkText.innerText);
         toast({ title: "Referral Link Copied", status: "success", duration: 1000, position: 'top' });
     };
-       const getUserDetails = async () => {
+    const getUserDetails = async () => {
         const res = await fetch("/api/user/dashboard", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -32,16 +34,17 @@ export default function App() {
             Cookies.remove("sessionId");
             router.push("/user/login");
         }
-       };
+    };
 
 
     useEffect(() => {
-getUserDetails();
+        getUserDetails();
     }, [])
 
     return (
         <NavHeader>
             <Text fontSize={'4xl'} fontWeight={'bold'} >Dashboard</Text>
+            
             <Card>
                 <CardBody>
                     <Text fontSize="xl" fontWeight={'bold'}>
@@ -72,7 +75,7 @@ getUserDetails();
                             </Box>
                             <Box mb={4}>
                                 <Heading as="h5" fontSize="md" mb={0}>
-                                   User Id
+                                    User Id
                                 </Heading>
                             </Box>
                             <Box d="flex" alignItems="center" mb={2}>
