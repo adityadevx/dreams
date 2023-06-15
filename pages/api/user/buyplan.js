@@ -27,6 +27,7 @@ const handler = async (req, res) => {
             const refferalBonus = parseInt(plan.referralBonus.split("%")[0]) / 100 * parseInt(plan.price);
             console.log(typeof refferalBonus);
             referrer.directBonus = referrer.directBonus + refferalBonus;
+            referrer.wallet += refferalBonus;
             await referrer.save();
         }
 

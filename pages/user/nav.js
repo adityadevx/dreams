@@ -148,6 +148,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 
 const MobileNav = ({ onOpen, ...rest }) => {
     const [userProfile, setUserProfile] = useState("");
+    const router = useRouter();
     const handleSignOut = () => {
         Cookies.remove("username");
         Cookies.remove("token");
