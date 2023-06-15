@@ -148,6 +148,11 @@ const NavItem = ({ icon, children, ...rest }) => {
 
 const MobileNav = ({ onOpen, ...rest }) => {
     const [userProfile, setUserProfile] = useState("");
+    const handleSignOut = () => {
+        Cookies.remove("username");
+        Cookies.remove("token");
+        router.push("/user/login");
+    };
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -234,7 +239,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                             <MenuItem>Profile</MenuItem>
                             <MenuItem>Settings</MenuItem>
                             <MenuDivider />
-                            <MenuItem>Sign out</MenuItem>
+                            <MenuItem  onClick={()=>{handleSignOut()}}  >Sign out</MenuItem>
                         </MenuList>
                     </Menu>
                 </Flex>

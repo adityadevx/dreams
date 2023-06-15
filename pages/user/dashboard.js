@@ -320,7 +320,7 @@ export default function App() {
                                 <Box d="flex" alignItems="center" mb={2}>
                                     <Box flex="1">
                                         <Heading as="h2" fontSize="xl" mb={0}>
-                                            15.07k
+                                            0
                                         </Heading>
                                     </Box>
                                 </Box>
@@ -373,7 +373,7 @@ export default function App() {
                                 </Box>
                                 <Box mb={4}>
                                     <Heading as="h5" fontSize="md" mb={0}>
-                                        Withdrawal
+                                        Withdrawals
                                     </Heading>
                                 </Box>
                                 <Box d="flex" alignItems="center" mb={2}>

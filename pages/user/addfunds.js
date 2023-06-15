@@ -7,6 +7,7 @@ import {
     Button,
     Icon,
     useColorModeValue,
+    useToast
 } from '@chakra-ui/react';
 import NavHeader from './nav';
 import Cookies from 'js-cookie';
@@ -14,6 +15,7 @@ import { useState } from 'react';
 import { LockIcon } from '@chakra-ui/icons';
 
 export default function CardWithIllustration() {
+    const toast = useToast();
     const [amount, setAmount] = useState(0);
 
     const handleFunds = async (e) => {
@@ -30,7 +32,7 @@ export default function CardWithIllustration() {
             const data = await res.json();
             console.log(data);
             if (res.status === 200) {
-                alert("Funds added successfully")
+                return toast({ title: "Funds added", description: "Funds added to wallet", status: "success", duration: 3000, isClosable: true, position: "top-center" })
             }
             else {
                 alert("User not found")
@@ -38,7 +40,7 @@ export default function CardWithIllustration() {
 
         } catch (error) {
             console.log(error.message)
-            alert("Something went wrong")
+            return toast({ title: "Error", description: "Error adding funds", status: "error", duration: 3000, isClosable: true, position: "top-center" })
         }
     };
 
