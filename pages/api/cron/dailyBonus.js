@@ -1,7 +1,7 @@
-import dbConnection from '@/controllers/dbConnection';
+import dbConnection from '@/controllers/dbConnection.js';
 import User from '@/models/User';
 
-async function updateDailyBonus() {
+export async function updateDailyBonus() {
     try {
         // Find all users
         const users = await User.find({});
@@ -24,7 +24,7 @@ async function updateDailyBonus() {
             }
 
             // Update the user's dailyBonus field with the calculated total
-            user.dailyBonus = totalDailyBonus;
+            user.dailyBonus += totalDailyBonus;
             user.wallet += totalDailyBonus;
 
             // Save the updated user document
@@ -37,13 +37,13 @@ async function updateDailyBonus() {
     }
 }
 
-// Establish database connection and call updateDailyBonus
-(async () => {
+export default async function handleDailyBonusUpdate(req, res) {
     try {
         await dbConnection(); // Ensure the database connection is established before proceeding
         await updateDailyBonus(); // Update the daily bonus
+        res.status(200).json({ message: 'Daily bonus update completed successfully.' });
     } catch (error) {
         console.error('Error establishing database connection or updating daily bonus:', error);
+        res.status(500).json({ error: 'An error occurred while updating daily bonus.' });
     }
-})();
-
+}
