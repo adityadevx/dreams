@@ -15,7 +15,11 @@ import {
 import { CheckIcon } from '@chakra-ui/icons';
 import NavHeader from './nav';
 import Cookie from 'js-cookie';
-import updateDailyBonus from '@/pages/api/cron/dailyBonus';
+import Cookies from 'js-cookie';
+import Head from 'next/head';
+import { useEffect } from 'react';
+import {useRouter} from 'next/router';
+
 
 const plans = [
     {
@@ -61,10 +65,36 @@ const plans = [
 ];
 
 export default function Pricing() {
+    const toast = useToast();
+    const router = useRouter();
+    const verifySessionId = async () => {
+        const response = await fetch('/api/user/sessionIdCheck', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: Cookie.get('username') }),
+        });
+        const data = await response.json();
+        if(response.status == 200){
+            console.log(data);
+        }
+        else{ 
+            console.log(data);
+            router.push('/user/login');
+        }
+    };
+    
+
+    useEffect(() => { 
+        verifySessionId();
+     }, [])
+    
 
     return (
+        <>
+        <Head>
+            <title>Staking</title>
+        </Head>
         <NavHeader>
-
             <Grid
                 templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
                 gap={3}
@@ -75,8 +105,8 @@ export default function Pricing() {
                     <Card key={index} plan={plan} />
                 ))}
             </Grid>
-
         </NavHeader>
+        </>
     );
 }
 
@@ -125,7 +155,6 @@ function Card({ plan }) {
         }
     };
     return (
-
         <Box
             maxW={'330px'}
             w={'full'}
