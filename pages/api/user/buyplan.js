@@ -30,8 +30,17 @@ const handler = async (req, res) => {
             referrer.wallet += refferalBonus;
             await referrer.save();
         }
-
-
+        if(user && referrer) {
+            console.log("user and referrer found");
+            const report = {
+                plan: plan.name,
+                amount: plan.price,
+                type: "plan",
+                date: new Date().toISOString(),
+            }
+            referrer.reports.push(report);
+            await referrer.save();
+        }
         return res.status(200).json({ message: "Plan purchased successfully" })
     }
 };

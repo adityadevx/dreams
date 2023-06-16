@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
     referralId: { type: String, trim: true },
     username: { type: String, trim: true },
     plans: { type: Array },
+    reports : { type: Array },
     referredBy: { type: String, trim: true },
     gender: { type: String, trim: true, default: "" },
     dob: { type: String, trim: true, default: "" },

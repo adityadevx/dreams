@@ -10,8 +10,9 @@ import Cookies from 'js-cookie';
 const login = () => {
     const toast = useToast();
     const router = useRouter();
-    const [formDetails, setFormDetails] = useState({ email: '', password: '' })
+    const [formDetails, setFormDetails] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
+    const [loginBtn, setLoginBtn] = useState(false);
 
     const { email, password } = formDetails;
 
@@ -21,8 +22,10 @@ const login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoginBtn(true);
         console.log(formDetails);
         if (email === '' || password === '') {
+            setLoginBtn(false);
             return toast({
                 title: "Error",
                 description: "Please fill all fields",
@@ -44,13 +47,15 @@ const login = () => {
                     title: "Success",
                     description: data.message,
                     status: "success",
-                    duration: 3000,
+                    duration: 2000,
                     position: 'top'
                 })
                 document.cookie = `username=${data.user}`;
+                setLoginBtn(false);
                 router.push('/user/dashboard');
             }
             else {
+                setLoginBtn(false);
                 toast({
                     title: "Error",
                     description: data.message,
@@ -61,6 +66,7 @@ const login = () => {
             }
 
         } catch (error) {
+            setLoginBtn(false);
             return toast({
                 title: "Error",
                 description: "Internal server error",
@@ -117,8 +123,9 @@ const login = () => {
                             </FormControl>
                             <Stack spacing={10} pt={2}>
                                 <Button
-                                    loadingText="Submitting"
+                                    loadingText="Logging in"
                                     size="lg"
+                                    isLoading={loginBtn}
                                     bg={'blue.400'}
                                     color={'white'}
                                     type='submit'

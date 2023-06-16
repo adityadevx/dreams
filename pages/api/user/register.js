@@ -20,6 +20,7 @@ const handler = async (req, res) => {
                 username: req.body.username,
                 country: req.body.country,
                 wallet: 0,
+                referredBy: req.body.referralId,
                 topupWallet: 0,
                 deposits: 0,
                 withdrawals: 0,

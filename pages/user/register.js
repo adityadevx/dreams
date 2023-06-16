@@ -11,6 +11,7 @@ const country_list = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", 
 export default function SignupCard() {
     const router = useRouter();
     const toast = useToast();
+    const [submitBtnLoading, setSubmitBtnLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [formDetails, setFormDetails] = useState({ firstName: '', lastName: '', email: '', telephone: '', username: '', country: '', wallet: 0, topupWallet: 0, deposits: 0, withdrawals: 0, password: '', referralId: '', sessionId: '' })
 
@@ -21,7 +22,9 @@ export default function SignupCard() {
     }
     const handleOnSubmit = async (e) => {
         e.preventDefault();
+        setSubmitBtnLoading(true);
         if (firstName === '' || email === '' || password === '' || telephone === '' || username === '' || country == '') {
+            setSubmitBtnLoading(false);
             return toast({ title: "Please fill all fields", status: "error", position: 'top', duration: 3000, })
         }
 
@@ -34,14 +37,17 @@ export default function SignupCard() {
             const data = await res.json();
             console.log(data);
             if (res.status === 200) {
+                setSubmitBtnLoading(false);
                 router.push('/user/login');
             }
             if (res.status === 400) {
+                setSubmitBtnLoading(false);
                 return toast({ title: data.message, status: "error", position: 'top', duration: 3000, })
             }
 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
+            setSubmitBtnLoading(false);
         }
     }
 
@@ -142,6 +148,7 @@ export default function SignupCard() {
                         <Stack spacing={10} pt={2}>
                             <Button
                                 loadingText="Submitting"
+                                isLoading={submitBtnLoading}
                                 size="lg"
                                 bg={'blue.400'}
                                 color={'white'}
