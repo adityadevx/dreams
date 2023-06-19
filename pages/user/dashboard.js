@@ -5,6 +5,7 @@ import { CopyIcon } from "@chakra-ui/icons";
 import { FaUsers, FaWallet, FaGlobe, FaMoneyBillAlt, FaExchangeAlt } from "react-icons/fa";
 import Cookies from "js-cookie";
 import router from "next/router";
+import Head from "next/head";
 
 
 
@@ -49,6 +50,9 @@ export default function App() {
     return (
 
         <>
+        <Head>
+                <title>Dashboard</title>
+        </Head>
             <NavHeader>
                 <Text fontSize={'4xl'} fontWeight={'bold'} >Dashboard</Text>
                 <Button colorScheme="teal" variant="outline" my={2} onClick={()=>{runCron()}}>Run DailyBonus Cron</Button>
@@ -212,7 +216,7 @@ export default function App() {
                                 <Box d="flex" alignItems="center" mb={2}>
                                     <Box flex="1">
                                         <Heading as="h2" fontSize="xl" mb={0}>
-                                            15.07k
+                                            0
                                         </Heading>
                                     </Box>
                                 </Box>
